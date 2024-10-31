@@ -1,10 +1,9 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { json } from "react-router-dom";
+import Products from "../components/products/Products";
+// import { Products } from "../products/Products";
 
-export default function HomePage() {
-  return (
-    <>
-      <div>HomePage</div>
-      <p> hdfh</p>
-    </>
-  );
-}
+const HomePage = () => {
+
+};
+export default HomePage;

@@ -9,12 +9,14 @@ import HomePage from "./pages/HomePage";
 import ProductPage from "./pages/ProductPage";
 import ProductDetail from "./pages/ProductDetail";
 import DashboardPage from "./pages/DashboardPage";
+import ErrorPage from "./pages/ErrorPage";
 
 const App = () => {
   const router = createBrowserRouter([
     {
       path: "/",
       element: <Layout />,
+      errorElement: <ErrorPage />,
       children: [
         {
           path: "/",
@@ -22,7 +24,7 @@ const App = () => {
         },
         {
           path: "/ProductPage",
-          element: <ProductPage/>,
+          element: <ProductPage />,
         },
         {
           path: "/ProductDetail",
@@ -35,7 +37,11 @@ const App = () => {
       ],
     },
   ]);
-  return <RouterProvider router={router} />;
+  return (
+    <>
+      <RouterProvider router={router} />;
+    </>
+  );
 };
 
 export default App;

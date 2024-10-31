@@ -1,0 +1,26 @@
+import React from 'react'
+
+import Product from "./Product";
+
+const ListOfProdut = ({ products }) => {
+
+   if (!products) {
+     return <h2>Loading the Products </h2>;
+   }
+  return products.length > 0 ? (
+    products.map((product) => (
+      <Product
+        key={product.id}
+        title={product.title}
+        location={product.location}
+        image={product.image}
+        price={product.price}
+        onDelete={() => onDelete(product.id)}
+      />
+    ))
+  ) : (
+    <p>No Products available at the moment. </p>
+  );
+};
+
+export default ListOfProdut

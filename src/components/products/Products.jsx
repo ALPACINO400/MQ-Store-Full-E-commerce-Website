@@ -1,9 +1,20 @@
-import React from 'react'
+import React, { useEffect, useState } from "react";
 
-export default function Products() {
+const Products = ({products}) => {
+ const { products } = useContext(ProductContext);
+
   return (
-    <div>Products</div>
-  )
-}
+    <div>
+      {products.map((product) => {
+        return (
+          <div key={product.ProductId}>
+            <h2>{product.Name}</h2>
+          </div>
+        );
+      })}
+    </div>
+    
+  );
+};
 
-
+export default Products;
