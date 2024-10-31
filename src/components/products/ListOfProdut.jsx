@@ -2,7 +2,7 @@ import React from 'react'
 
 import Product from "./Product";
 
-const ListOfProdut = ({ products }) => {
+const ListOfProduct = ({ products }) => {
 
    if (!products) {
      return <h2>Loading the Products </h2>;
@@ -23,4 +23,4 @@ const ListOfProdut = ({ products }) => {
   );
 };
 
-export default ListOfProdut
+export default ListOfProduct;

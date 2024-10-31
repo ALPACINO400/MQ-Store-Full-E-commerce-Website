@@ -1,9 +1,23 @@
-import React, { useEffect, useState } from "react";
-import { json } from "react-router-dom";
+import React, { useContext } from "react";
 import Products from "../components/products/Products";
-// import { Products } from "../products/Products";
 
-const HomePage = () => {
+import { ProductContext } from "../Context/ProductContext";
 
-};
-export default HomePage;
+export default function HomePage() {
+  const { isLoading, error } = useContext(ProductContext);
+
+  if (isLoading) {
+    return <p>Loading products....</p>;
+  }
+
+  if (error) {
+    return <p>{error.message}</p>;
+  }
+
+  return (
+    <div>
+      <h2>List of products</h2>
+      <Products />
+    </div>
+  )
+}

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React from "react";
 import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
 import "./App.css";
@@ -10,13 +10,14 @@ import ProductPage from "./pages/ProductPage";
 import ProductDetail from "./pages/ProductDetail";
 import DashboardPage from "./pages/DashboardPage";
 import ErrorPage from "./pages/ErrorPage";
+import { ProductProvider } from "./Context/ProductContext";
 
 const App = () => {
   const router = createBrowserRouter([
     {
       path: "/",
       element: <Layout />,
-      errorElement: <ErrorPage />,
+       errorElement: <ErrorPage />,
       children: [
         {
           path: "/",
@@ -38,9 +39,9 @@ const App = () => {
     },
   ]);
   return (
-    <>
+    <ProductProvider>
       <RouterProvider router={router} />;
-    </>
+    </ProductProvider>
   );
 };
 

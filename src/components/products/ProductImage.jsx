@@ -1,5 +1,6 @@
-import React from 'react'
+import React from "react";
 
-const ProductImage = ({Image ,title}) =>  <Img src={Image} alt={title}/> 
+const ProductImage = ({ image, title }) => <img src={image} alt={title} />;
 
-export default ProductImage
+
+export default ProductImage;
