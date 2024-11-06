@@ -1,31 +1,33 @@
 import React, { useEffect, useState } from "react";
-import { useLocation, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 import { getProductById } from "../services/productService";
 
 const ProductDetail = () => {
-  const location = useLocation();
   const { productId } = useParams();
-  const [product, setProduct] = useState(location.state?.product || null); // Use state if available
-  const [isLoading, setIsLoading] = useState(!product); // Set loading based on product availability
+  const [product, setProduct] = useState({}); // Use state if available
+  const [isLoading, setIsLoading] = useState(true); // Set loading based on product availability
   const [error, setError] = useState(null);
 
+  const fetchProduct = async () => {
+    setIsLoading(true);
+    try {
+      const response = await getProductById(productId); // fetch product details
+
+      console.log(response);
+      setProduct(response.data.data);
+    } catch (err) {
+      setError("Failed to fetch product details");
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   useEffect(() => {
-    if (!product) {
-      const fetchProduct = async () => {
-        setIsLoading(true);
-        try {
-          const response = await getProductById(productId); // fetch product details
-          setProduct(response.data);
-        } catch (err) {
-          setError("Failed to fetch product details");
-        } finally {
-          setIsLoading(false);
-        }
-      };
+ {
       fetchProduct();
     }
-  }, [product, productId]);
+  }, []);
 
   if (isLoading) return <p>Loading...</p>;
   if (error) return <p>{error}</p>;
@@ -46,5 +48,3 @@ const ProductDetail = () => {
   );
 };
 export default ProductDetail;
-//useConext
-//FindFunction
