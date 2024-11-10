@@ -79,6 +79,27 @@ export const getAllProducts = async (
   return response.data;
 };
 
+export const createProduct = async (productData) => {
+  try {
+    const response = await axios.post(baseURL, productData);
+    return response.data;
+  } catch (error) {
+    console.error("Error in createProduct:", error);
+    throw error; // rethrow to handle it where this function is called
+  }
+};
+export const updateProduct = async (productId, productData) => {
+  const response = await axios.put(`${baseURL}/${productId}`, productData);
+  return response.data;
+};
+
+export const DeleteProductById = async (productId) => {
+  const response = await axios.get(
+    `http://localhost:5125/api/v1/products/${productId}`
+  );
+  return response;
+};
+
 export const getProductById = async (productId) => {
   const response = await axios.get(
     `http://localhost:5125/api/v1/products/${productId}`

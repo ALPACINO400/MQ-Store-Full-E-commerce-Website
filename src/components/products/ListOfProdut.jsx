@@ -15,8 +15,11 @@ const ListOfProduct = ({ products }) => {
         location={product.location}
         image={product.image}
         price={product.price}
+       quantity= {product.quantity}
+
         onDelete={() => onDelete(product.id)}
       />
+      
     ))
   ) : (
     <p>No Products available at the moment. </p>

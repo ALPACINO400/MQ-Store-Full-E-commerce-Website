@@ -58,10 +58,10 @@
 
 // export default SearchInput;
 import React, { useContext, useState } from "react";
-import { ProductContext } from "../Context/ProductContext";
 
 import { TextField, Button, Typography } from "@mui/material";
 import Products from "./products/Products";
+import { ProductContext } from "../Context/ProductContext";
 
 const SearchInput = () => {
   const { setSearchValue } = useContext(ProductContext);

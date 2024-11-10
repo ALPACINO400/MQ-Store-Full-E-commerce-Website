@@ -1,12 +1,12 @@
-import { Container, Typography, Grid2 } from "@mui/material";
+import { Container, Typography, Grid2, Box } from "@mui/material";
 
-import React, { useContext } from "react";
 import Products from "../components/products/Products";
 
-import { ProductContext } from "../Context/ProductContext";
 import SearchInput from "../components/SearchInput";
 import PaginationComponent from "../components/PaginationComponent";
 import SortProduct from "../components/SortProduct";
+import { ProductContext } from "../Context/ProductContext";
+import { useContext } from "react";
 
 export default function HomePage() {
   const { isLoading, error } = useContext(ProductContext);
@@ -31,8 +31,9 @@ export default function HomePage() {
         <SortProduct />
       </Grid2>
       <Products />
-      <PaginationComponent />
+      <Box sx={{ display: "flex", justifyContent: "center", mt: 4 }}>
+        <PaginationComponent />
+      </Box>
     </Container>
   );
 }
-//navgate

@@ -1,6 +1,6 @@
-import { FormControl, InputLabel, MenuItem, Select } from '@mui/material';
-import React, { useContext } from 'react';
-import { ProductContext } from '../Context/ProductContext';
+import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
+import React, { useContext } from "react";
+import { ProductContext } from "../Context/ProductContext";
 
 const SortProduct = () => {
   const { sortOrder, setSortOrder } = useContext(ProductContext);
