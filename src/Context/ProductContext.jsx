@@ -67,7 +67,13 @@
 // }
 // In ProductContext
 import React, { createContext, useEffect, useState } from "react";
-import { getAllProducts, DeleteProductById, getProductById, createProduct, updateProduct } from "../services/productService";
+import {
+  getAllProducts,
+  DeleteProductById,
+  getProductById,
+  createProduct,
+  updateProduct,
+} from "../services/productService";
 
 export const ProductContext = createContext();
 
@@ -84,7 +90,12 @@ export const ProductProvider = ({ children }) => {
   const fetchData = async (searchValue, pageNumber, pageSize, sortOrder) => {
     setIsLoading(true);
     try {
-      const data = await getAllProducts(pageNumber, pageSize, searchValue, sortOrder);
+      const data = await getAllProducts(
+        pageNumber,
+        pageSize,
+        searchValue,
+        sortOrder
+      );
       setProducts(data.data.items);
       setTotalPages(data.data.totalPages);
     } catch (error) {
@@ -96,8 +107,9 @@ export const ProductProvider = ({ children }) => {
 
   const addProduct = async (newProduct) => {
     try {
-      const addedProduct = await createProduct(newProduct);
-      setProducts((prevProducts) => [...prevProducts, addedProduct.data]);
+      const addednewPeoduct = await createProduct(newProduct);
+      console.log(addednewPeoduct)
+      setProducts((prevProducts) => [...prevProducts, addednewPeoduct]);
     } catch (error) {
       setError("Failed to add product.");
     }
@@ -107,7 +119,9 @@ export const ProductProvider = ({ children }) => {
     try {
       const updatedProduct = await updateProduct(id, updatedProductData);
       setProducts((prevProducts) =>
-        prevProducts.map((prod) => (prod.id === id ? updatedProduct.data : prod))
+        prevProducts.map((prod) =>
+          prod.id === id ? updatedProduct.data : prod
+        )
       );
     } catch (error) {
       setError("Failed to update product.");
@@ -116,8 +130,11 @@ export const ProductProvider = ({ children }) => {
 
   const deleteProductById = async (id) => {
     try {
-      await DeleteProductById(id);
-      setProducts((prevProducts) => prevProducts.filter((prod) => prod.id !== id));
+      const res = await DeleteProductById(id);
+      console.log(res);
+      setProducts((prevProducts) =>
+        prevProducts.filter((prod) => prod.productId !== id)
+      );
     } catch (error) {
       setError("Failed to delete product.");
     }

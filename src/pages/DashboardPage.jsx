@@ -1,12 +1,14 @@
-import React, { useContext, useState } from "react";
+import React, { useEffect, useContext, useState } from "react";
 import { ProductContext } from "../Context/ProductContext";
 import Products from "../components/products/Products";
-import { Box, Container, Grid2, Typography } from "@mui/material";
 import SearchInput from "../components/SearchInput";
 import SortProduct from "../components/SortProduct";
 import PaginationComponent from "../components/PaginationComponent";
-import { createProduct, DeleteProductById } from "../services/productService";
 import AddProductForm from "../Forms/AddProductForm";
+import { Outlet } from "react-router-dom";
+import AdminSidebar from "./AdminSidebar";
+import { Button } from "@mui/material";
+import { createProduct } from "../services/productService";
 
 const DashboardPage = () => {
   const {
@@ -21,13 +23,13 @@ const DashboardPage = () => {
   const [newProductData, setNewProductData] = useState({});
   const [editingProductId, setEditingProductId] = useState(null);
   const handleAddProduct = async (productData) => {
-    try {
+    // try {
       const response = await createProduct(productData);
       console.log("Product added:", response);
       // Optionally, refresh product list or show a success message
-    } catch (error) {
-      console.error("Failed to add product:", error);
-    }
+    // } catch (error) {
+    //   console.error("Failed to add product:", error);
+    // }
   };
 
   const handleUpdateProduct = (productId, updatedData) => {
@@ -35,8 +37,9 @@ const DashboardPage = () => {
     setEditingProductId(null); // Close edit mode after updating
   };
 
-  const handleDeleteProduct = (productId) => {
-    deleteProductById(productId);
+  const handleDeleteProduct = async (productId) => {
+    const res = await deleteProductById(productId);
+    return res;
   };
 
   if (isLoading) {
@@ -59,21 +62,26 @@ const DashboardPage = () => {
       <div>
         <h2>Products</h2>
         {products.map((product) => (
-          <div key={product.id}>
+          <div key={product.productId}>
             <p>{product.name}</p>
             {/* Display additional product details */}
-            <button onClick={() => handleDeleteProduct(product.id)}>
+            <Button
+              variant="outlined"
+              color="secondary"
+              onClick={() => handleDeleteProduct(product.productId)}
+              sx={{ ml: 1 }}
+            >
               Delete
-            </button>
-            <button onClick={() => setEditingProductId(product.id)}>
+            </Button>
+            <button onClick={() => setEditingProductId(product.productId)}>
               Edit
             </button>
-            {editingProductId === product.id && (
+            {editingProductId === product.productId && (
               <div>
                 {/* Form fields for editing a product */}
                 <button
                   onClick={() =>
-                    handleUpdateProduct(product.id, newProductData)
+                    handleUpdateProduct(product.productId, newProductData)
                   }
                 >
                   Save
@@ -83,8 +91,10 @@ const DashboardPage = () => {
           </div>
         ))}
       </div>
-     <PaginationComponent />
+      <AdminSidebar />
+      <Outlet />
 
+      <PaginationComponent />
     </div>
   );
 };

@@ -1,12 +1,25 @@
-import React, { useState } from "react";
-import { TextField, Button, Box, Typography } from "@mui/material";
+import React, { useContext, useState } from "react";
+import {
+  TextField,
+  Button,
+  Box,
+  Typography,
+  FormControl,
+  InputLabel,
+  Select,
+  MenuItem,
+} from "@mui/material";
+import { createProduct } from "../services/productService";
+import { ProductContext } from "../Context/ProductContext";
 
 const AddProductForm = ({ onSubmit }) => {
+  const { addProduct } = useContext(ProductContext);
   const [productData, setProductData] = useState({
     name: "",
     description: "",
     price: "",
-    category: "",
+    quantity: "",
+    categoryId: "",
   });
 
   const handleChange = (e) => {
@@ -17,11 +30,17 @@ const AddProductForm = ({ onSubmit }) => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (onSubmit) onSubmit(productData);
-  };
 
+    try {
+    const res = await addProduct(productData); // Use context's createProduct function
+    console.log("Product successfully created", res);
+    // Optionally reset form fields
+    } catch (error) {
+      console.error("Error creating product:", error);
+    }
+  };
   return (
     <Box
       component="form"
@@ -70,15 +89,33 @@ const AddProductForm = ({ onSubmit }) => {
         fullWidth
         required
       />
-
       <TextField
-        label="Category"
-        name="category"
-        value={productData.category}
+        label="quantity"
+        name="quantity"
+        value={productData.quantity}
         onChange={handleChange}
+        type="number"
         fullWidth
         required
       />
+
+      <FormControl fullWidth required>
+        <InputLabel>Category</InputLabel>
+        <Select
+          label="Category"
+          name="categoryId"
+          value={productData.categoryId}
+          onChange={handleChange}
+        >
+          <MenuItem value="1499c195-309f-45d6-971f-011b522801fb">
+            iPhones
+          </MenuItem>
+          <MenuItem value="97764aa9-abd3-4e29-a495-525939cc58ef">PCs</MenuItem>
+          <MenuItem value="8b4647bd-6f63-4ff9-9e98-257a284fb644">
+            Accessories
+          </MenuItem>
+        </Select>
+      </FormControl>
 
       <Button type="submit" variant="contained" color="primary" fullWidth>
         Add Product

@@ -80,21 +80,24 @@ export const getAllProducts = async (
 };
 
 export const createProduct = async (productData) => {
-  try {
-    const response = await axios.post(baseURL, productData);
+  // try {
+    const response = await axios.post(`${baseURL}` , productData);
+
+    console.log(response)
+  
     return response.data;
-  } catch (error) {
-    console.error("Error in createProduct:", error);
-    throw error; // rethrow to handle it where this function is called
-  }
-};
+  // } catch (error) {
+  //   console.error("Error in createProduct:", error);
+  //   throw error; // rethrow to handle it where this function is called
+  // }
+};  
 export const updateProduct = async (productId, productData) => {
   const response = await axios.put(`${baseURL}/${productId}`, productData);
   return response.data;
 };
 
 export const DeleteProductById = async (productId) => {
-  const response = await axios.get(
+  const response = await axios.delete(
     `http://localhost:5125/api/v1/products/${productId}`
   );
   return response;
@@ -106,3 +109,55 @@ export const getProductById = async (productId) => {
   );
   return response;
 };
+
+// //
+// export const createAdminProduct = async (productData) => {
+//   try {
+//     const response = await axios.post(baseURL, productData);
+//     return response.data;
+//   } catch (error) {
+//     console.error("Error in createProduct:", error);
+//     throw error;
+//   }
+// };
+
+// export const getAdminAllProducts = async (
+//   pageNumber = 1,
+//   pageSize = 5,
+//   searchValue = "",
+//   sortOrder = "name_asc"
+// ) => {
+//   const params = new URLSearchParams();
+//   params.append("pageNumber", pageNumber);
+//   params.append("pageSize", pageSize);
+
+//   if (searchValue) params.append("search", searchValue);
+//   if (sortOrder) params.append("sortOrder", sortOrder);
+
+//   try {
+//     const response = await axios.get(`${baseURL}?${params.toString()}`);
+//     return response.data;
+//   } catch (error) {
+//     console.error("Error in getAllProducts:", error);
+//     throw error;
+//   }
+// };
+
+// export const deleteAdminProduct = async (id) => {
+//   try {
+//     await axios.delete(`${baseURL}/${id}`);
+//   } catch (error) {
+//     console.error("Error in deleteProduct:", error);
+//     throw error;
+//   }
+// };
+
+// export const updateAdminProduct = async (id, productData) => {
+//   try {
+//     const response = await axios.put(`${baseURL}/${id}`, productData);
+//     return response.data;
+//   } catch (error) {
+//     console.error("Error in updateProduct:", error);
+//     throw error;
+//   }
+// };

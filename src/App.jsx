@@ -6,13 +6,13 @@ import Layout from "./components/Layout/Layout";
 import HomePage from "./pages/HomePage";
 import ProductPage from "./pages/ProductPage";
 import ProductDetail from "./pages/ProductDetail";
-import DashboardPage from "./pages/DashboardPage";
 import ErrorPage from "./pages/ErrorPage";
 import { ProductProvider } from "./Context/ProductContext";
 import Cart from "./components/cart/Cart";
 import { CartProvider } from "./Context/CartContext";
 import RegisterPage from "./pages/RegisterPage";
 import SignInPage from "./pages/SignInPage";
+import DashboardPage from "./pages/DashboardPage";
 const App = () => {
   const router = createBrowserRouter([
     {
@@ -54,7 +54,9 @@ const App = () => {
   return (
     <ProductProvider>
       <CartProvider>
-        <RouterProvider router={router} />;
+
+          <RouterProvider router={router} />;
+   
       </CartProvider>
     </ProductProvider>
   );
