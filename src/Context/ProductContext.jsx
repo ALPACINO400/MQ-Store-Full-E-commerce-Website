@@ -108,7 +108,7 @@ export const ProductProvider = ({ children }) => {
   const addProduct = async (newProduct) => {
     try {
       const addednewPeoduct = await createProduct(newProduct);
-      console.log(addednewPeoduct)
+      console.log(addednewPeoduct);
       setProducts((prevProducts) => [...prevProducts, addednewPeoduct]);
     } catch (error) {
       setError("Failed to add product.");

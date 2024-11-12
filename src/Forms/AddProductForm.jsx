@@ -19,6 +19,7 @@ const AddProductForm = ({ onSubmit }) => {
     description: "",
     price: "",
     quantity: "",
+    imageIDs: "",
     categoryId: "",
   });
 
@@ -34,9 +35,10 @@ const AddProductForm = ({ onSubmit }) => {
     e.preventDefault();
 
     try {
-    const res = await addProduct(productData); // Use context's createProduct function
-    console.log("Product successfully created", res);
-    // Optionally reset form fields
+      console.log(productData);
+      const res = await addProduct(productData); // Use context's createProduct function
+      console.log("Product successfully created", res);
+      // Optionally reset form fields
     } catch (error) {
       console.error("Error creating product:", error);
     }
@@ -106,9 +108,11 @@ const AddProductForm = ({ onSubmit }) => {
           name="categoryId"
           value={productData.categoryId}
           onChange={handleChange}
+          fullWidth
+          required
         >
           <MenuItem value="1499c195-309f-45d6-971f-011b522801fb">
-            iPhones
+            Phones{" "}
           </MenuItem>
           <MenuItem value="97764aa9-abd3-4e29-a495-525939cc58ef">PCs</MenuItem>
           <MenuItem value="8b4647bd-6f63-4ff9-9e98-257a284fb644">
@@ -116,6 +120,15 @@ const AddProductForm = ({ onSubmit }) => {
           </MenuItem>
         </Select>
       </FormControl>
+
+      <TextField
+        label="image"
+        name="imageIDs"
+        value={productData.imageIDs}
+        onChange={handleChange}
+        fullWidth
+        required
+      />
 
       <Button type="submit" variant="contained" color="primary" fullWidth>
         Add Product

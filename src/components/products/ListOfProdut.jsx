@@ -10,16 +10,16 @@ const ListOfProduct = ({ products }) => {
   return products.length > 0 ? (
     products.map((product) => (
       <Product
+        className="ListOfProduct"
         key={product.id}
         title={product.title}
         location={product.location}
         image={product.image}
         price={product.price}
-       quantity= {product.quantity}
+        quantity={product.quantity}
 
-        onDelete={() => onDelete(product.id)}
+        // onDelete={() => onDelete(product.id)}
       />
-      
     ))
   ) : (
     <p>No Products available at the moment. </p>

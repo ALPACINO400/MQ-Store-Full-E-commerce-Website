@@ -81,6 +81,7 @@ export const getAllProducts = async (
 
 export const createProduct = async (productData) => {
   // try {
+  console.log(createProduct)
     const response = await axios.post(`${baseURL}` , productData);
 
     console.log(response)

@@ -63,7 +63,13 @@ const DashboardPage = () => {
         <h2>Products</h2>
         {products.map((product) => (
           <div key={product.productId}>
-            <p>{product.name}</p>
+            <p>product name {product.name}</p>
+            <p>product description {product.description}</p>
+            <p>product price {product.price}</p>
+            <p>product quantity {product.quantity}</p>
+            <p>{product.imageIDs}</p>
+            <p>product categoryId{product.categoryId}</p>
+
             {/* Display additional product details */}
             <Button
               variant="outlined"
@@ -89,11 +95,9 @@ const DashboardPage = () => {
               </div>
             )}
           </div>
-        ))}
+        ))} 
       </div>
-      <AdminSidebar />
-      <Outlet />
-
+      
       <PaginationComponent />
     </div>
   );
