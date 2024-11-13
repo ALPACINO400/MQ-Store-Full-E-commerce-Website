@@ -1,12 +1,10 @@
-import { Container, Typography, Grid2, Box } from "@mui/material";
+import { useContext } from "react";
 
 import Products from "../components/products/Products";
-
 import SearchInput from "../components/SearchInput";
 import PaginationComponent from "../components/PaginationComponent";
 import SortProduct from "../components/SortProduct";
 import { ProductContext } from "../Context/ProductContext";
-import { useContext } from "react";
 
 export default function HomePage() {
   const { isLoading, error } = useContext(ProductContext);
@@ -44,4 +42,4 @@ export default function HomePage() {
       </div>
     </div>
   );
-};
+}

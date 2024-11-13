@@ -25,7 +25,6 @@ const Footer = () => {
           Terms of Service
         </Link>
         <Link href="/contact" color="inherit" underline="hover">
-        
           Contact Us
         </Link>
       </Box>

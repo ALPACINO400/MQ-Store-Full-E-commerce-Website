@@ -1,13 +1,4 @@
 import React, { useEffect, useContext, useState } from "react";
-import { ProductContext } from "../Context/ProductContext";
-import Products from "../components/products/Products";
-import SearchInput from "../components/SearchInput";
-import SortProduct from "../components/SortProduct";
-import PaginationComponent from "../components/PaginationComponent";
-import AddProductForm from "../Forms/AddProductForm";
-import { Outlet } from "react-router-dom";
-import AdminSidebar from "./AdminSidebar";
-import { createProduct } from "../services/productService";
 import {
   Container,
   Typography,
@@ -24,6 +15,16 @@ import {
   Select,
   MenuItem,
 } from "@mui/material";
+
+import Products from "../components/products/Products";
+import SearchInput from "../components/SearchInput";
+import SortProduct from "../components/SortProduct";
+import PaginationComponent from "../components/PaginationComponent";
+import AddProductForm from "../Forms/AddProductForm";
+import { Outlet } from "react-router-dom";
+import { ProductContext } from "../Context/ProductContext";
+import { createProduct } from "../services/productService";
+
 const DashboardPage = () => {
   const {
     products,
@@ -37,49 +38,40 @@ const DashboardPage = () => {
   const [newProductData, setNewProductData] = useState({});
   const [editingProductId, setEditingProductId] = useState(null);
   const handleAddProduct = async (productData) => {
-    // try {
+    try {
       const response = await createProduct(productData);
       console.log("Product added:", response);
-      // Optionally, refresh product list or show a success message
-    // } catch (error) {
-    //   console.error("Failed to add product:", error);
-    // }
+    } catch (error) {
+      console.error("Failed to add product:", error);
+    }
   };
 
-const handleEditProduct = (product) => {
-  setEditingProductId(product.productId);
-  setNewProductData({
-    name: product.name,
-    description: product.description,
-    price: product.price,
-    quantity: product.quantity,
-    categoryId: product.categoryId,
-    imageIDs: product.imageIDs,
-  });
-};
-// const handleUpdateProduct = async (productId, updatedData) => {
-//   await updateProductById(productId, updatedData);
-//   setEditingProductId(null);
-//   setNewProductData({}); // Clear form data
-// };
-const handleUpdateProduct = () => {
-  if (editingProductId) {
-    updateProductById(editingProductId, newProductData);
-    setEditingProductId(null); // Close edit mode after updating
-    setNewProductData({}); // Clear form data
-  }
-};
+  const handleEditProduct = (product) => {
+    setEditingProductId(product.productId);
+    setNewProductData({
+      name: product.name,
+      description: product.description,
+      price: product.price,
+      quantity: product.quantity,
+      categoryId: product.categoryId,
+      imageIDs: product.imageIDs,
+    });
+  };
+  const handleUpdateProduct = () => {
+    if (editingProductId) {
+      updateProductById(editingProductId, newProductData);
+      setEditingProductId(null); // Close edit mode after updating
+      setNewProductData({}); // Clear form data
+    }
+  };
 
-
-
-const handleFormChange = (e) => {
-  const { name, value } = e.target;
-  setNewProductData((prevData) => ({
-    ...prevData,
-    [name]: value,
-  }));
-};
-
+  const handleFormChange = (e) => {
+    const { name, value } = e.target;
+    setNewProductData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
 
   const handleDeleteProduct = async (productId) => {
     const res = await deleteProductById(productId);
@@ -95,55 +87,6 @@ const handleFormChange = (e) => {
   }
 
   return (
-    // <div>
-    //   <h2>Add Product</h2>
-    //   <AddProductForm onSubmit={handleAddProduct} />
-
-    //   <SearchInput />
-
-    //   <SortProduct />
-
-    //   <div>
-    //     <h2>Products</h2>
-    //     {products.map((product) => (
-    //       <div key={product.productId}>
-    //         <p>product name {product.name}</p>
-    //         <p>product description {product.description}</p>
-    //         <p>product price {product.price}</p>
-    //         <p>product quantity {product.quantity}</p>
-    //         <p>{product.imageIDs}</p>
-    //         <p>product categoryId{product.categoryId}</p>
-
-    //         {/* Display additional product details */}
-    //         <Button
-    //           variant="outlined"
-    //           color="secondary"
-    //           onClick={() => handleDeleteProduct(product.productId)}
-    //           sx={{ ml: 1 }}
-    //         >
-    //           Delete
-    //         </Button>
-    //         <button onClick={() => setEditingProductId(product.productId)}>
-    //           Edit
-    //         </button>
-    //         {editingProductId === product.productId && (
-    //           <div>
-    //             {/* Form fields for editing a product */}
-    //             <button
-    //               onClick={() =>
-    //                 handleUpdateProduct(product.productId, newProductData)
-    //               }
-    //             >
-    //               Save
-    //             </button>
-    //           </div>
-    //         )}
-    //       </div>
-    //     ))}
-    //   </div>
-
-    //   <PaginationComponent />
-    // </div>
     <Container maxWidth="lg" sx={{ mt: 6, mb: 4 }}>
       <Typography variant="h4" align="center" gutterBottom>
         Admin Dashboard

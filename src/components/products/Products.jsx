@@ -16,9 +16,8 @@ import {
 } from "@mui/material";
 
 const Products = (product) => {
-  const { addToCart } = useCart(); // Use the custom hook to get the addToCart function
+  const { addToCart } = useCart();
 
-  // Destructure the context to get products data, loading state, and error state
   const { products, isLoading, error } = useContext(ProductContext);
 
   if (isLoading) {
@@ -38,7 +37,7 @@ const Products = (product) => {
         <Grid item xs={12} sm={6} md={4} key={product.productId}>
           <Card
             sx={{
-              backgroundColor: "black ",
+              backgroundColor: "#F0F0F0 ",
               color: "white",
               display: "flex",
               flexDirection: "column",
@@ -47,61 +46,38 @@ const Products = (product) => {
               height: "100%",
             }}
           >
-            {/* <CardMedia
+            <CardMedia
               component="img"
-              height="400"
+              height="200"
               image={product.imageIDs}
               alt={product.name}
               sx={{
                 objectFit: "cover",
+                border: "1px solid white",
+                backgroundColor: "white",
+                width: "90%",
+                height: "auto",
                 borderBottom: "1px solid #ddd",
-                marginBottom: "15px",
-              }}
-            /> */}
-            <CardMedia
-              component="img"
-              height="200" // Set a consistent height for the image
-              image={product.imageIDs}
-              alt={product.name}
-              sx={{
-                objectFit: "cover", // Makes the image cover the available area
-                border: "1px solid white", // Set border color and thickness here
-                backgroundColor: "white", // Background color inside the border
-
-                width: "90%", // Ensure it takes full width of the card
-                height: "auto", // Control image height
-                borderBottom: "1px solid #ddd", // Optional border for separation
               }}
             />
-
             <CardContent>
               <Typography
                 variant="h5"
                 component="h1"
                 sx={{
-                  color: "white",
+                  color: "black",
                   fontSize: "1.3rem",
                   marginBottom: "0.8rem",
                 }}
               >
                 {product.name}
               </Typography>
-              {/* <Typography
-                variant="body2"
-                sx={{
-                  color: "white",
-                  fontSize: "1rem",
-                  marginBottom: "1.2rem",
-                }}
-              >
-                {product.description}
-              </Typography> */}
+
               <Typography
                 variant="body2"
-                sx={{ color: "white", fontSize: "1.2rem" }}
+                sx={{ color: "black", fontSize: "1.2rem" }}
               >
-                Price:
-                {product.price}
+                Price: {product.price} SR
               </Typography>
             </CardContent>
             <Link
@@ -116,13 +92,12 @@ const Products = (product) => {
             >
               Click for more details...{" "}
             </Link>
-
             <Button
               variant="contained"
               fullWidth
               onClick={() => addToCart(product)}
               sx={{
-                backgroundColor: "#ff6b6b",
+                backgroundColor: "black",
                 color: "white",
                 padding: "10px 15px",
                 borderRadius: "4px",

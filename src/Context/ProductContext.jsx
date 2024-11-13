@@ -1,5 +1,5 @@
-
 import React, { createContext, useEffect, useState } from "react";
+
 import {
   getAllProducts,
   DeleteProductById,
@@ -54,19 +54,6 @@ export const ProductProvider = ({ children }) => {
     }
   };
 
-  // const updateProductById = async (id, updatedProductData) => {
-  //   try {
-  //     const updatedProduct = await updateProduct(id, updatedProductData);
-  //     setProducts((prevProducts) =>
-  //       prevProducts.map((prod) =>
-  //         prod.id === id ? updatedProduct.data : prod
-  //       )
-  //     );
-  //   } catch (error) {
-  //     setError("Failed to update product.");
-  //   }
-  // };
-
   // Function to update a product by its ID
   const updateProductById = async (productId, updatedData) => {
     try {
@@ -100,12 +87,11 @@ export const ProductProvider = ({ children }) => {
     }
   };
 
-  // useEffect hook to fetch products whenever search value, page number, page size, or sort order changes
   useEffect(() => {
     fetchData(searchValue, pageNumber, pageSize, sortOrder); // Fetch products when dependencies change
   }, [searchValue, pageNumber, pageSize, sortOrder]);
-  
   // Provide the product context values to children components
+
   return (
     <ProductContext.Provider
       value={{

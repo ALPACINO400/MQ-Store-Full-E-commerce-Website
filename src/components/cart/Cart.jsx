@@ -52,7 +52,7 @@ const Cart = () => {
                 objectFit: "cover",
                 borderRadius: 3,
               }}
-              image={item.imageIDs} // assuming `item.image` contains the image URL
+              image={item.imageIDs}
               alt={item.name}
             />
             {/* Product Details */}
@@ -72,10 +72,10 @@ const Cart = () => {
               </Typography>
 
               <Typography variant="body2" sx={{ marginBottom: "4px" }}>
-                Price: ${item.price}
+                Price: {item.price}SR
               </Typography>
               <Typography variant="body2" sx={{ color: "green" }}>
-                In Stock: {item.quantity}
+                in the cart: {item.quantity}
               </Typography>
               <Box sx={{ marginTop: "auto" }}>
                 <Button
@@ -91,14 +91,12 @@ const Cart = () => {
           </Card>
         ))
       )}
-
       {/* Total Price */}
       {cart.length > 0 && (
         <Typography variant="h6" sx={{ marginTop: 2, fontWeight: "bold" }}>
           Total Price: ${totalPrice.toFixed(2)}
         </Typography>
       )}
-
       {/* Clear Cart Button */}
       {cart.length > 0 && (
         <Button
@@ -110,14 +108,12 @@ const Cart = () => {
           Clear Cart
         </Button>
       )}
-
       {/* Payment Option Button */}
       {cart.length > 0 && (
         <Button variant="contained" color="success" sx={{ marginTop: 2 }}>
           Proceed to Payment
         </Button>
       )}
-
       {/* Address Update Section */}
       <Box sx={{ marginTop: 4 }}>
         <Typography variant="h6" sx={{ fontWeight: "bold" }}>

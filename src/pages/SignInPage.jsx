@@ -9,16 +9,17 @@ import {
   Typography,
   Container,
   Paper,
+  Divider,
 } from "@mui/material";
 import { toast, ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css"; // Import styles for Toastify
-
+import "react-toastify/dist/ReactToastify.css";
 
 const SignInPage = () => {
   const [formData, setFormData] = useState({
     email: "ma@gmail.com",
     password: "123moh",
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const navigate = useNavigate();
 
@@ -31,6 +32,8 @@ const SignInPage = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setIsSubmitting(true);
+
     try {
       const response = await axios.post(
         "https://sda-3-onsite-backend-teamwork-gs0y.onrender.com/api/v1/auth/login",
@@ -66,14 +69,26 @@ const SignInPage = () => {
           autoClose: 2000,
         }
       );
+    } finally {
+      setIsSubmitting(false);
     }
   };
   return (
-    <Container maxWidth="xs" sx={{ marginTop: 4 }}>
-      <Paper elevation={3} sx={{ padding: 3 }}>
+    <Container maxWidth="xs" sx={{ marginTop: 6 }}>
+      <Paper elevation={3} sx={{ padding: 4 }}>
         <Typography variant="h4" align="center" gutterBottom>
-          Login
+          Welcome Back!
         </Typography>
+        <Typography
+          variant="body1"
+          align="center"
+          color="textSecondary"
+          gutterBottom
+        >
+          Please sign in to continue
+        </Typography>
+        <Divider sx={{ my: 2 }} />
+
         <form onSubmit={handleSubmit}>
           <Box sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
             <TextField
@@ -85,6 +100,7 @@ const SignInPage = () => {
               onChange={handleChange}
               required
               fullWidth
+              sx={{ backgroundColor: "#f9f9f9" }}
             />
             <TextField
               label="Password"
@@ -95,15 +111,22 @@ const SignInPage = () => {
               onChange={handleChange}
               required
               fullWidth
+              sx={{ backgroundColor: "#f9f9f9" }}
             />
             <Button
               type="submit"
               variant="contained"
               color="primary"
               fullWidth
-              sx={{ marginTop: 2, backgroundColor: "black" }}
+              sx={{
+                mt: 2,
+                backgroundColor: "#000",
+                color: "#fff",
+                fontWeight: "bold",
+              }}
+              disabled={isSubmitting}
             >
-              Login
+              {isSubmitting ? "Signing  to your Account..." : "sigin in"}
             </Button>
           </Box>
         </form>

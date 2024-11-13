@@ -1,12 +1,11 @@
-import React from 'react'
+import React from "react";
 
 import Product from "./Product";
 
 const ListOfProduct = ({ products }) => {
-
-   if (!products) {
-     return <h2>Loading the Products </h2>;
-   }
+  if (!products) {
+    return <h2>Loading the Products </h2>;
+  }
   return products.length > 0 ? (
     products.map((product) => (
       <Product
@@ -17,8 +16,6 @@ const ListOfProduct = ({ products }) => {
         image={product.image}
         price={product.price}
         quantity={product.quantity}
-
-        // onDelete={() => onDelete(product.id)}
       />
     ))
   ) : (

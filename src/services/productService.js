@@ -1,61 +1,7 @@
-// import axios, { Axios } from "axios";
-
-// const baseURL = "http://localhost:5125/api/v1/products";
-// export const getAllProducts = async (
-//   pageNumber = 1,
-//   pageSize = 1,
-//   searchValue = "",
-//   sortOrder = "name_asc"
-// ) => {
-//   const params = new URLSearchParams();
-//   params.append("pageNumber", pageNumber);
-//   params.append("psgeSize", pageSize);
-
-//   if (searchValue) {
-//     params.append("search", searchValue);
-//   }
-//   if (sortOrder) {
-//     params.append("sortOrder", sortOrder);
-//   }
-//   const response = await axios.get(`${baseURL}?${params.toString()}`);
-//   console.log(response);
-//   return response.data;
-// };
-
-// import axios from "axios";
-
-// const baseURL = "http://localhost:5125/api/v1/products";
-
-// export const getAllProducts = async (
-//   pageNumber = 1,
-//   pageSize = 5,
-//   searchValue = "",
-//   sortOrder = "name_asc"
-// ) => {
-//   const params = new URLSearchParams();
-//   params.append("pageNumber", pageNumber);
-//   params.append("pageSize", pageSize); // Corrected typo here
-
-//   if (searchValue) {
-//     params.append("search", searchValue);
-//   }
-//   if (sortOrder) {
-//     params.append("sortOrder", sortOrder);
-//   }
-
-//   const url = `${baseURL}?${params.toString()}`;
-//   console.log("Request URL:", url); // Debugging log for URL
-//   const response = await axios.get(url);
-//   console.log("API Response:", response.data); // Debugging log for API response
-//   return response.data;
-// };
-
 import axios from "axios";
 
 const baseURL =
   "https://sda-3-onsite-backend-teamwork-gs0y.onrender.com/api/v1/products";
-
-// baseURL?pageNumber=1&pageSize=10&search=lala&sortOrder=name_asc
 
 export const getAllProducts = async (
   PageNumber = 1,
@@ -81,22 +27,14 @@ export const getAllProducts = async (
 };
 
 export const createProduct = async (productData) => {
-  // try {
-  console.log(createProduct)
-    const response = await axios.post(`${baseURL}` , productData);
+  console.log(createProduct);
+  const response = await axios.post(`${baseURL}`, productData);
 
-    console.log(response)
-  
-    return response.data;
-  // } catch (error) {
-  //   console.error("Error in createProduct:", error);
-  //   throw error; // rethrow to handle it where this function is called
-  // }
-};  
-// export const updateProduct = async (productId, productData) => {
-//   const response = await axios.put(`${baseURL}/${productId}`, productData);
-//   return response.data;
-// };
+  console.log(response);
+
+  return response.data;
+};
+
 export const updateProduct = async (productId, updatedData) => {
   try {
     const response = await fetch(
@@ -117,7 +55,6 @@ export const updateProduct = async (productId, updatedData) => {
   }
 };
 
-
 export const DeleteProductById = async (productId) => {
   const response = await axios.delete(
     `https://sda-3-onsite-backend-teamwork-gs0y.onrender.com/api/v1/products/${productId}`
@@ -131,55 +68,3 @@ export const getProductById = async (productId) => {
   );
   return response;
 };
-
-// //
-// export const createAdminProduct = async (productData) => {
-//   try {
-//     const response = await axios.post(baseURL, productData);
-//     return response.data;
-//   } catch (error) {
-//     console.error("Error in createProduct:", error);
-//     throw error;
-//   }
-// };
-
-// export const getAdminAllProducts = async (
-//   pageNumber = 1,
-//   pageSize = 5,
-//   searchValue = "",
-//   sortOrder = "name_asc"
-// ) => {
-//   const params = new URLSearchParams();
-//   params.append("pageNumber", pageNumber);
-//   params.append("pageSize", pageSize);
-
-//   if (searchValue) params.append("search", searchValue);
-//   if (sortOrder) params.append("sortOrder", sortOrder);
-
-//   try {
-//     const response = await axios.get(`${baseURL}?${params.toString()}`);
-//     return response.data;
-//   } catch (error) {
-//     console.error("Error in getAllProducts:", error);
-//     throw error;
-//   }
-// };
-
-// export const deleteAdminProduct = async (id) => {
-//   try {
-//     await axios.delete(`${baseURL}/${id}`);
-//   } catch (error) {
-//     console.error("Error in deleteProduct:", error);
-//     throw error;
-//   }
-// };
-
-// export const updateAdminProduct = async (id, productData) => {
-//   try {
-//     const response = await axios.put(`${baseURL}/${id}`, productData);
-//     return response.data;
-//   } catch (error) {
-//     console.error("Error in updateProduct:", error);
-//     throw error;
-//   }
-// };

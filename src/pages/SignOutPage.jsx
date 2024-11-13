@@ -15,8 +15,6 @@ const SignOutPage = () => {
     navigate("/signin");
   }, [navigate]);
 
-
-
   return (
     <Container maxWidth="xs" sx={{ marginTop: 4 }}>
       <Paper elevation={3} sx={{ padding: 3 }}>
@@ -27,7 +25,7 @@ const SignOutPage = () => {
           You are being logged out. Redirecting to login page...
         </Typography>
       </Paper>
-      </Container>
+    </Container>
   );
 };
 

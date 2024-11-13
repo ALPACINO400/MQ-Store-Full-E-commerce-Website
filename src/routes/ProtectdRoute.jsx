@@ -1,7 +1,7 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
-import SignInPage from "../pages/SignInPage";
 
+import SignInPage from "../pages/SignInPage";
 
 const ProtectedRoute = () => {
   // Check localStorage for login status

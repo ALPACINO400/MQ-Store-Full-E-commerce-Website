@@ -1,10 +1,10 @@
 import React, { useContext } from "react";
 import "./App.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
 
 import Layout from "./components/Layout/Layout";
 import HomePage from "./pages/HomePage";
-import ProductPage from "./pages/ProductPage";
 import ProductDetail from "./pages/ProductDetail";
 import ErrorPage from "./pages/ErrorPage";
 import { ProductProvider } from "./Context/ProductContext";
@@ -16,7 +16,7 @@ import DashboardPage from "./pages/DashboardPage";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
 import SignOutPage from "./pages/SignOutPage";
-import { ToastContainer } from "react-toastify";
+
 const App = () => {
   const router = createBrowserRouter([
     {
@@ -40,10 +40,6 @@ const App = () => {
           path: "/Contact",
           element: <Contact />,
         },
-        // {
-        //   path: "/ProductPage",
-        //   element: <ProductPage />,
-        // },
         {
           path: "/cart",
           element: <Cart />,
@@ -65,9 +61,9 @@ const App = () => {
           element: <SignInPage />,
         },
         {
-          path: "/signout" ,
-          element: <SignOutPage />
-        }
+          path: "/signout",
+          element: <SignOutPage />,
+        },
       ],
     },
   ]);

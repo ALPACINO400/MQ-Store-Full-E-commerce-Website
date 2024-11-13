@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-
 import { getProductById } from "../services/productService";
 import {
   Card,
@@ -11,21 +10,20 @@ import {
   Divider,
   Button,
 } from "@mui/material";
+
 import useCart from "../hooks/useCart";
 
-
 const ProductDetail = () => {
-    const { addToCart } = useCart();
+  const { addToCart } = useCart();
   const { productId } = useParams();
   const [product, setProduct] = useState({}); // Use state if available
-  const [isLoading, setIsLoading] = useState(true); // Set loading based on product availability
+  const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
-
 
   const fetchProduct = async () => {
     setIsLoading(true);
     try {
-      const response = await getProductById(productId); // fetch product details
+      const response = await getProductById(productId);
 
       console.log(response);
       setProduct(response.data.data);
@@ -37,7 +35,7 @@ const ProductDetail = () => {
   };
 
   useEffect(() => {
- {
+    {
       fetchProduct();
     }
   }, []);
@@ -46,45 +44,30 @@ const ProductDetail = () => {
   if (error) return <p>{error}</p>;
 
   return (
-    // <div>
-    //   {product && (
-    //     <>
-    //       <h1>Name: {product.name}</h1>
-    //       <p>Quantity: {product.quantity}</p>
-    //       <p>Description: {product.description}</p>
-    //       <p>Price: {product.price} SR</p>
-    //       <img src={product.imageIDs} alt={product.name} />{" "}
-    //     </>
-    //   )}
-    // </div>
-    // );
     <div>
       {product && (
         <Card
           sx={{
             maxWidth: 800,
             margin: "20px auto",
-            backgroundColor: "#D6C0B3",
+            backgroundColor: "#F0F0F0",
           }}
         >
           {product.imageIDs && (
             <CardMedia
               component="img"
-              height="200" // Set a consistent height for the image
+              height="200"
               image={product.imageIDs}
               alt={product.name}
               sx={{
-                objectFit: "center", // Makes the image cover the available area
-                border: "1px solid black", // Set border color and thickness here
-                backgroundColor: "black", // Background color inside the border
-
-                width: "50%", // Ensure it takes full width of the card
-                height: "auto", // Control image height
-                margin: "0 auto", // Centers the image horizontally
-
-                borderBottom: "1px solid #ddd", // Optional border for separation
-                display: "block", // Ensures the image behaves like a block element
-
+                objectFit: "center",
+                border: "1px solid black",
+                backgroundColor: "black",
+                width: "50%",
+                height: "auto",
+                margin: "0 auto",
+                borderBottom: "1px solid #ddd",
+                display: "block",
               }}
             />
           )}
@@ -119,11 +102,11 @@ const ProductDetail = () => {
               onClick={() => addToCart(product)}
               fullWidth
               sx={{
-                backgroundColor: "black", // Set button background color to black
-                color: "white", // Set text color to white
+                backgroundColor: "black",
+                color: "white",
                 marginTop: "16px",
                 "&:hover": {
-                  backgroundColor: "darkgray", // Optional: set hover color
+                  backgroundColor: "darkgray",
                 },
               }}
             >

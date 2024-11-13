@@ -1,14 +1,12 @@
-
-  import React, { createContext, useEffect, useState } from 'react';
-import PropTypes from 'prop-types';
-
+import React, { createContext, useEffect, useState } from "react";
+import PropTypes from "prop-types";
 
 export const CartContext = createContext();
 
 export const CartProvider = ({ children }) => {
   // Load the cart from localStorage if available, otherwise initialize it as an empty array
   const loadCartFromLocalStorage = () => {
-    const cartData = localStorage.getItem('cart');
+    const cartData = localStorage.getItem("cart");
     return cartData ? JSON.parse(cartData) : [];
   };
 
@@ -16,7 +14,7 @@ export const CartProvider = ({ children }) => {
 
   // Function to save the cart to localStorage
   const saveCartToLocalStorage = (cartItems) => {
-    localStorage.setItem('cart', JSON.stringify(cartItems));
+    localStorage.setItem("cart", JSON.stringify(cartItems));
   };
 
   const addToCart = (product) => {
@@ -52,10 +50,9 @@ export const CartProvider = ({ children }) => {
 
   const clearCart = () => {
     setCart([]);
-    localStorage.removeItem('cart'); // Remove the cart from localStorage
+    localStorage.removeItem("cart"); // Remove the cart from localStorage
   };
 
-  // Synchronize cart with localStorage whenever it changes
   useEffect(() => {
     saveCartToLocalStorage(cart);
   }, [cart]);

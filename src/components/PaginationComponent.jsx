@@ -1,61 +1,7 @@
-// import { Pagination } from "@mui/material";
-// import React, { useContext } from "react";
-
-// import { ProductContext } from "../Context/ProductContext";
-
-
-// const PaginationComponent = () => {
-//   const { pageNumber, setPageNumber, pageSize, totalPages } =
-//     useContext(ProductContext);
-
-//   console.log(pageNumber);
-
-//   const handlePageChange = (event, value) => {
-//     setPageNumber(value);
-//   };
-
-//   return (
-//     <Pagination
-//       count={totalPages}
-//       page={pageNumber}
-//       onChange={handlePageChange}
-//       variant="outlined"
-//       shape="rounded"
-//       sx={{ marginTop: 3 }}
-//     />
-//   );
-// };
-
-// export default PaginationComponent;
-
-// import { Pagination } from "@mui/material";
-// import React, { useContext } from "react";
-// import { ProductContext } from "../Context/ProductContext";
-
-// const PaginationComponent = () => {
-//   const { pageNumber, setPageNumber, totalPages } = useContext(ProductContext);
-
-//   const handlePageChange = (event, value) => {
-//     setPageNumber(value);
-//   };
-
-//   return (
-//     <Pagination
-//       count={totalPages}
-//       page={pageNumber}
-//       onChange={handlePageChange}
-//       variant="outlined"
-//       shape="rounded"
-//       sx={{ marginTop: 3 }}
-//     />
-//   );
-// };
-
-// export default PaginationComponent;
 import { Box, Pagination } from "@mui/material";
+
 import { ProductContext } from "../Context/ProductContext";
 import { useContext } from "react";
-
 
 const PaginationComp = () => {
   const { pageNumber, setPageNumber, pageSize, totalPages } =
@@ -75,10 +21,11 @@ const PaginationComp = () => {
         onChange={handlePageChange}
         variant="outlined"
         shape="rounded"
-         sx={{
-      "& .MuiPaginationItem-root": {
-        color: "white",              
-      }}}
+        sx={{
+          "& .MuiPaginationItem-root": {
+            color: "white",
+          },
+        }}
       />
     </Box>
   );
