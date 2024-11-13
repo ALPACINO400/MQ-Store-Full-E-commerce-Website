@@ -75,6 +75,10 @@ const PaginationComp = () => {
         onChange={handlePageChange}
         variant="outlined"
         shape="rounded"
+         sx={{
+      "& .MuiPaginationItem-root": {
+        color: "white",              
+      }}}
       />
     </Box>
   );

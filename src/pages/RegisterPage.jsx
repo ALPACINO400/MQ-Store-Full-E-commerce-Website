@@ -1,5 +1,13 @@
 import React, { useState } from "react";
 import axios from "axios";
+import {
+  TextField,
+  Button,
+  Box,
+  Typography,
+  Container,
+  Paper,
+} from "@mui/material";
 
 const RegisterPage = () => {
   const [formData, setFormData] = useState({
@@ -21,7 +29,7 @@ const RegisterPage = () => {
     e.preventDefault();
     try {
       const response = await axios.post(
-        "http://localhost:5125/api/v1/auth/register",
+        "https://sda-3-onsite-backend-teamwork-gs0y.onrender.com/api/v1/auth/register",
         formData
       );
       alert("User created successfully");
@@ -36,50 +44,73 @@ const RegisterPage = () => {
   };
 
   return (
-    <div>
-      <h2>Register</h2>
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          name="username"
-          placeholder="Username"
-          value={formData.username}
-          onChange={handleChange}
-          required
-        />
-        <input
-          type="email"
-          name="email"
-          placeholder="Email"
-          value={formData.email}
-          onChange={handleChange}
-          required
-        />
-        <input
-          type="password"
-          name="password"
-          placeholder="Password"
-          value={formData.password}
-          onChange={handleChange}
-          required
-        />
-        <input
-          type="text"
-          name="address"
-          placeholder="Address"
-          value={formData.address}
-          onChange={handleChange}
-        />
-        <input
-          type="number"
-          name="age"
-          placeholder="Age"
-          value={formData.age}
-          onChange={handleChange}
-        />
-        <button type="submit">Register</button>
-      </form>
-    </div>
+    <Container maxWidth="sm" sx={{ marginTop: 4 }}>
+      <Paper elevation={3} sx={{ padding: 3 }}>
+        <Typography variant="h4" align="center" gutterBottom>
+          Register
+        </Typography>
+        <form onSubmit={handleSubmit}>
+          <Box sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
+            <TextField
+              label="Username"
+              name="username"
+              variant="outlined"
+              value={formData.username}
+              onChange={handleChange}
+              required
+              fullWidth
+            />
+            <TextField
+              label="Email"
+              type="email"
+              name="email"
+              variant="outlined"
+              value={formData.email}
+              onChange={handleChange}
+              required
+              fullWidth
+            />
+            <TextField
+              label="Password"
+              type="password"
+              name="password"
+              variant="outlined"
+              value={formData.password}
+              onChange={handleChange}
+              required
+              fullWidth
+            />
+            <TextField
+              label="Address"
+              name="address"
+              variant="outlined"
+              value={formData.address}
+              onChange={handleChange}
+              fullWidth
+            />
+            <TextField
+              label="Age"
+              type="number"
+              name="age"
+              variant="outlined"
+              value={formData.age}
+              onChange={handleChange}
+              fullWidth
+            />
+            <Button
+              type="submit"
+              variant="contained"
+              color="primary"
+              fullWidth
+              sx={{ marginTop: 2, backgroundColor:"black"}}
+              
+            >
+              Register
+            </Button>
+          </Box>
+        </form>
+      </Paper>
+    </Container>
   );
 };
 

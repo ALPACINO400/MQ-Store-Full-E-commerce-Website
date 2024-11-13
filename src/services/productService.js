@@ -52,7 +52,8 @@
 
 import axios from "axios";
 
-const baseURL = "http://localhost:5125/api/v1/products";
+const baseURL =
+  "https://sda-3-onsite-backend-teamwork-gs0y.onrender.com/api/v1/products";
 
 // baseURL?pageNumber=1&pageSize=10&search=lala&sortOrder=name_asc
 
@@ -92,21 +93,41 @@ export const createProduct = async (productData) => {
   //   throw error; // rethrow to handle it where this function is called
   // }
 };  
-export const updateProduct = async (productId, productData) => {
-  const response = await axios.put(`${baseURL}/${productId}`, productData);
-  return response.data;
+// export const updateProduct = async (productId, productData) => {
+//   const response = await axios.put(`${baseURL}/${productId}`, productData);
+//   return response.data;
+// };
+export const updateProduct = async (productId, updatedData) => {
+  try {
+    const response = await fetch(
+      `https://sda-3-onsite-backend-teamwork-gs0y.onrender.com/api/v1/products/${productId}`,
+      {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(updatedData),
+      }
+    );
+    if (!response.ok) throw new Error("Failed to update product");
+    return await response.json();
+  } catch (error) {
+    console.error("Update error:", error);
+    throw error;
+  }
 };
+
 
 export const DeleteProductById = async (productId) => {
   const response = await axios.delete(
-    `http://localhost:5125/api/v1/products/${productId}`
+    `https://sda-3-onsite-backend-teamwork-gs0y.onrender.com/api/v1/products/${productId}`
   );
   return response;
 };
 
 export const getProductById = async (productId) => {
   const response = await axios.get(
-    `http://localhost:5125/api/v1/products/${productId}`
+    `https://sda-3-onsite-backend-teamwork-gs0y.onrender.com/api/v1/products/${productId}`
   );
   return response;
 };

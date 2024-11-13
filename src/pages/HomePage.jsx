@@ -20,20 +20,28 @@ export default function HomePage() {
   }
 
   return (
-    <Container>
-      <Typography variant="h4" gutterBottom>
-        List of products
-      </Typography>
-      <Grid2 item xs={12} md={6}>
-        <SearchInput />
-      </Grid2>
-      <Grid2 item xs={12} md={3}>
-        <SortProduct />
-      </Grid2>
-      <Products />
-      <Box sx={{ display: "flex", justifyContent: "center", mt: 4 }}>
-        <PaginationComponent />
-      </Box>
-    </Container>
+    <div>
+      <div className="homepage-container">
+        <h1 className="homepage-title">List of products</h1>
+
+        <div className="homepage-grid">
+          <div className="search-input-container">
+            <SearchInput />
+          </div>
+
+          <div className="sort-product-container">
+            <SortProduct />
+          </div>
+        </div>
+
+        <div className="products-container">
+          <Products />
+        </div>
+
+        <div className="pagination-container">
+          <PaginationComponent />
+        </div>
+      </div>
+    </div>
   );
-}
+};

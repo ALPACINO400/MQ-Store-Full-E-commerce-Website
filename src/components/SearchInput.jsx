@@ -74,15 +74,25 @@ const SearchInput = () => {
   };
 
   const handleSearch = () => {
-    const trimmedSearchInput = searchInput.trim();
+    try {
+      const trimmedSearchInput = searchInput.trim();
 
-    if (trimmedSearchInput === "" && !products) {
-      setError("Invalid input: Search field cannot be empty.");
-    } else {
-      setSearchValue(trimmedSearchInput.toLowerCase()); // Case-insensitive search
-      setError("");
+      // Check for empty input
+      if (trimmedSearchInput === "" && !products) {
+        setError("Search field cannot be empty.or not found");
+      } else {
+        setSearchValue(trimmedSearchInput.toLowerCase()); // Case-insensitive search
+
+        // Clear the error after a successful search
+        setError("");
+      }
+    } catch (error) {
+      // Handle unexpected errors
+      console.error("Error occurred during search:");
+      setError("An unexpected error occurred. Please try again.");
     }
   };
+
 
   return (
     <div>
@@ -95,6 +105,26 @@ const SearchInput = () => {
         value={searchInput}
         onChange={handleSearchChange}
         margin="normal"
+        sx={{
+          "& .MuiOutlinedInput-root": {
+            "& fieldset": {
+              borderColor: "lightblue", // Border color for default state
+            },
+            "&:hover fieldset": {
+              borderColor: "#F5EFFF", // Border color when hovered
+            },
+            "&.Mui-focused fieldset": {
+              borderColor: "#F5EFFF", // Border color when focused
+            },
+            color: "#F5EFFF", // Text color
+          },
+          "& .MuiInputLabel-root": {
+            color: "#F5EFFF", // Label color
+          },
+          "& .MuiInputLabel-root.Mui-focused": {
+            color: "#F5EFFF", // Label color when focused
+          },
+        }}
       />
 
       <Button variant="contained" color="primary" onClick={handleSearch}>

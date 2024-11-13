@@ -11,13 +11,30 @@ const SortProduct = () => {
 
   return (
     <div>
-      <FormControl fullWidth margin="normal">
-        <InputLabel id="sort-label">Sort By</InputLabel>
+      <FormControl fullWidth margin="normal" sx={{ color: "#FBFBFB" }}>
+        <InputLabel id="sort-label" sx={{ color: "white" }}>
+          Sort By
+        </InputLabel>
         <Select
           labelId="sort-label"
           value={sortOrder}
           label="Sort By"
           onChange={handleSortChange}
+          sx={{
+            color: "white",
+            "& .MuiOutlinedInput-notchedOutline": {
+              borderColor: "white", // Border color for default state
+            },
+            "&:hover .MuiOutlinedInput-notchedOutline": {
+              borderColor: "lightgray", // Border color on hover
+            },
+            "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+              borderColor: "lightgray", // Border color when focused
+            },
+            "& .MuiSvgIcon-root": {
+              color: "white", // Icon color
+            },
+          }}
         >
           <MenuItem value="name_asc">Name (A-Z)</MenuItem>
           <MenuItem value="name_desc">Name (Z-A)</MenuItem>

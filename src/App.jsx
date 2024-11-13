@@ -13,6 +13,10 @@ import { CartProvider } from "./Context/CartContext";
 import RegisterPage from "./pages/RegisterPage";
 import SignInPage from "./pages/SignInPage";
 import DashboardPage from "./pages/DashboardPage";
+import About from "./pages/About";
+import Contact from "./pages/Contact";
+import SignOutPage from "./pages/SignOutPage";
+import { ToastContainer } from "react-toastify";
 const App = () => {
   const router = createBrowserRouter([
     {
@@ -21,13 +25,25 @@ const App = () => {
       errorElement: <ErrorPage />,
       children: [
         {
+          path: "/HomePage",
+          element: <HomePage />,
+        },
+        {
           path: "/",
           element: <HomePage />,
         },
         {
-          path: "/ProductPage",
-          element: <ProductPage />,
+          path: "/About",
+          element: <About />,
         },
+        {
+          path: "/Contact",
+          element: <Contact />,
+        },
+        // {
+        //   path: "/ProductPage",
+        //   element: <ProductPage />,
+        // },
         {
           path: "/cart",
           element: <Cart />,
@@ -48,15 +64,18 @@ const App = () => {
           path: "/signin",
           element: <SignInPage />,
         },
+        {
+          path: "/signout" ,
+          element: <SignOutPage />
+        }
       ],
     },
   ]);
   return (
     <ProductProvider>
       <CartProvider>
-
-          <RouterProvider router={router} />;
-   
+        <RouterProvider router={router} />;
+        <ToastContainer />
       </CartProvider>
     </ProductProvider>
   );

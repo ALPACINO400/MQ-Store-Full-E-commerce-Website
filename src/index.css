@@ -1,4 +1,4 @@
- :root {
+ /* :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
@@ -66,4 +66,160 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 } 
+   */
+body{
+    background-color: #7292b1;
+    color: rgb(255, 255, 255);
+}
+.homepage-container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 10px;
+  text-align: center;
+}
+
+.homepage-title {
+  margin-bottom: 10px;
   
+}
+
+.homepage-grid {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+
+
+
+
+.products-container {
+  margin-top: 20px;
+}
+
+.pagination-container {
+  display: flex;
+  justify-content: center;
+  color: aliceblue;
+  margin-top: 20px;
+}
+/*
+search input desgin  
+*/
+.search-input-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  width: 100%;
+  color: aqua;
+  margin-left: -20px;
+}
+
+.error-text {
+  color: red;
+  
+  font-size: 14px;
+  margin-bottom: 8px;
+}
+
+.search-input {
+  width: 50%;
+  padding: 8px;
+  font-size: 16px;
+  border: 1px solid #1f1616;
+  border-radius: 4px;
+}
+
+.search-button {
+  background-color: #ff1100;
+  color: white;
+  padding: 8px 16px;
+  font-size: 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.search-button:hover {
+  background-color: #eb06069f;
+  transition: background-color 0.3s ease;
+}
+/*
+sort desgin
+*/
+.sort-product-container {
+  
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 70%;
+  margin-top: 1px;
+  align-items: flex-end;
+}
+
+.sort-label {
+  font-size: 18px;
+  font-weight: 500;
+  color: #ffffff;
+}
+
+.sort-select {
+  width: 100%;
+  padding: 8px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.sort-select:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+
+@media (max-width: 768px) {
+  .sort-product-container {
+    max-width: 100%;
+    margin-left: 0; /* Center align on smaller screens */
+    margin-top: 10px;
+  }
+
+  .sort-select {
+    padding: 6px;
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  
+  .sort-product-container {
+    width: 90%;
+    display: flex;
+        margin-right: 50px;
+
+    margin-top: 70px;
+  }
+
+  .sort-label,
+  .sort-select {
+    font-size: 14px;
+  }
+    .search-container {
+    width: 80%;
+    margin: 0 auto;
+    gap: 8px;
+  }
+
+  .search-input {
+    font-size: 14px;
+    padding: 6px;
+  }
+
+  .search-button {
+    font-size: 14px;
+    padding: 8px;
+  
+}
+}

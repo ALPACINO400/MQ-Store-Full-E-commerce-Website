@@ -1,71 +1,4 @@
-// import React, { createContext, useEffect, useState } from "react";
 
-// import { getAllProducts } from "../services/productService";
-
-// export const ProductContext = createContext();
-
-// export const ProductProvider = ({ children }) => {
-//   const [products, setProducts] = useState([]);
-//   const [isLoading, setIsLoading] = useState(false);
-//   const [error, setError] = useState(null);
-//   const [searchValue, setSearchValue] = useState("");
-//   const [pageNumber, setPageNumber] = useState(1);
-//   const [totalPages, setTotalPages] = useState(10);
-//   const [pageSize, setPageSize] = useState(2);
-//   const [sortOrder, setSortOrder] = useState("name_asc");
-
-//   const fetchData = async (searchValue, pageNumber, pageSize, sortOrder) => {
-//     setIsLoading(true);
-//     try {
-//       const data = await getAllProducts(
-//         pageNumber,
-//         pageSize,
-//         searchValue,
-//         sortOrder
-//       );
-
-//       if (data.data.items.length === 0) {
-//         setError("No products match your search.");
-//       } else {
-//         setError(null);
-//       }
-//       console.log("Fetched Data:", data); // Log fetched data for debugging
-
-//       setProducts(data.data.items);
-//       setTotalPages(data.data.totalPages);
-//     } catch (error) {
-//       setError(error.message);
-//     } finally {
-//       setIsLoading(false);
-//     }
-//   };
-
-//   useEffect(() => {
-//     fetchData(searchValue, pageNumber, pageSize, sortOrder);
-//   }, [searchValue, pageNumber, pageSize, sortOrder]);
-
-//   return (
-//     <ProductContext.Provider
-//       value={{
-//         products,
-//         isLoading,
-//         error,
-//         searchValue,
-//         setSearchValue,
-//         pageNumber,
-//         setPageNumber,
-//         pageSize,
-//         setPageSize,
-//         sortOrder,
-//         setSortOrder,
-//         totalPages,
-//       }}
-//     >
-//       {children}
-//     </ProductContext.Provider>
-//   );
-// }
-// In ProductContext
 import React, { createContext, useEffect, useState } from "react";
 import {
   getAllProducts,
@@ -83,19 +16,23 @@ export const ProductProvider = ({ children }) => {
   const [error, setError] = useState(null);
   const [searchValue, setSearchValue] = useState("");
   const [pageNumber, setPageNumber] = useState(1);
-  const [totalPages, setTotalPages] = useState(10);
-  const [pageSize, setPageSize] = useState(2);
+  const [totalPages, setTotalPages] = useState(10); // Number of products per page
+  const [pageSize, setPageSize] = useState(3); // Number of products per page
   const [sortOrder, setSortOrder] = useState("name_asc");
 
+  // Function to fetch products from the backend
   const fetchData = async (searchValue, pageNumber, pageSize, sortOrder) => {
     setIsLoading(true);
     try {
+      // Call the getAllProducts service function with the current parameters
       const data = await getAllProducts(
         pageNumber,
         pageSize,
         searchValue,
         sortOrder
       );
+      // Update state with fetched products and total pages
+
       setProducts(data.data.items);
       setTotalPages(data.data.totalPages);
     } catch (error) {
@@ -105,33 +42,56 @@ export const ProductProvider = ({ children }) => {
     }
   };
 
+  // Function to add a new product to the list
   const addProduct = async (newProduct) => {
     try {
       const addednewPeoduct = await createProduct(newProduct);
       console.log(addednewPeoduct);
+      // Update state by adding the new product to the products list
       setProducts((prevProducts) => [...prevProducts, addednewPeoduct]);
     } catch (error) {
       setError("Failed to add product.");
     }
   };
 
-  const updateProductById = async (id, updatedProductData) => {
+  // const updateProductById = async (id, updatedProductData) => {
+  //   try {
+  //     const updatedProduct = await updateProduct(id, updatedProductData);
+  //     setProducts((prevProducts) =>
+  //       prevProducts.map((prod) =>
+  //         prod.id === id ? updatedProduct.data : prod
+  //       )
+  //     );
+  //   } catch (error) {
+  //     setError("Failed to update product.");
+  //   }
+  // };
+
+  // Function to update a product by its ID
+  const updateProductById = async (productId, updatedData) => {
     try {
-      const updatedProduct = await updateProduct(id, updatedProductData);
+      // Call API or service function to update the product on the backend
+      const updatedProduct = await productService.updateProduct(
+        productId,
+        updatedData
+      );
+
+      // Update the products state by replacing the old product with the updated one
       setProducts((prevProducts) =>
-        prevProducts.map((prod) =>
-          prod.id === id ? updatedProduct.data : prod
+        prevProducts.map((product) =>
+          product.productId === productId ? updatedProduct : product
         )
       );
     } catch (error) {
-      setError("Failed to update product.");
+      console.error("Error updating product:", error);
     }
   };
 
   const deleteProductById = async (id) => {
     try {
-      const res = await DeleteProductById(id);
+      const res = await DeleteProductById(id); // Call the service to delete the product
       console.log(res);
+      // Remove the deleted product from the products list in the state
       setProducts((prevProducts) =>
         prevProducts.filter((prod) => prod.productId !== id)
       );
@@ -140,10 +100,12 @@ export const ProductProvider = ({ children }) => {
     }
   };
 
+  // useEffect hook to fetch products whenever search value, page number, page size, or sort order changes
   useEffect(() => {
-    fetchData(searchValue, pageNumber, pageSize, sortOrder);
+    fetchData(searchValue, pageNumber, pageSize, sortOrder); // Fetch products when dependencies change
   }, [searchValue, pageNumber, pageSize, sortOrder]);
-
+  
+  // Provide the product context values to children components
   return (
     <ProductContext.Provider
       value={{
