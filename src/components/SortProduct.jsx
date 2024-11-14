@@ -1,6 +1,5 @@
-import React, { useContext } from "react";
 import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
-
+import React, { useContext } from "react";
 import { ProductContext } from "../Context/ProductContext";
 
 const SortProduct = () => {
@@ -24,16 +23,16 @@ const SortProduct = () => {
           sx={{
             color: "white",
             "& .MuiOutlinedInput-notchedOutline": {
-              borderColor: "white",
+              borderColor: "white", // Border color for default state
             },
             "&:hover .MuiOutlinedInput-notchedOutline": {
-              borderColor: "lightgray",
+              borderColor: "lightgray", // Border color on hover
             },
             "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
-              borderColor: "lightgray",
+              borderColor: "lightgray", // Border color when focused
             },
             "& .MuiSvgIcon-root": {
-              color: "white",
+              color: "white", // Icon color
             },
           }}
         >

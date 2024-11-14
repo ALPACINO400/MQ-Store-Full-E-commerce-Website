@@ -37,7 +37,7 @@ const Products = (product) => {
         <Grid item xs={12} sm={6} md={4} key={product.productId}>
           <Card
             sx={{
-              backgroundColor: "#F0F0F0 ",
+              backgroundColor: "#D8D2C2 ",
               color: "white",
               display: "flex",
               flexDirection: "column",

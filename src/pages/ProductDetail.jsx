@@ -50,7 +50,7 @@ const ProductDetail = () => {
           sx={{
             maxWidth: 800,
             margin: "20px auto",
-            backgroundColor: "#F0F0F0",
+            backgroundColor: "#D8D2C2",
           }}
         >
           {product.imageIDs && (
