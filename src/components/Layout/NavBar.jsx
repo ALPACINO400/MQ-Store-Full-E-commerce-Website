@@ -1,13 +1,20 @@
-import React from "react";
+import React, { useContext } from "react";
 import { AppBar, Toolbar, Typography, Button, Box } from "@mui/material";
 import { Link, useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 import CartIcon from "../cart/CartIcon";
+import { ProductContext } from "../../Context/ProductContext";
 
 const NavBar = () => {
+  const { setSearchValue } = useContext(ProductContext);
   const navigate = useNavigate();
+
+  const handleHomeClick = () => {
+    setSearchValue(""); // Reset the search value
+    navigate("/"); // Navigate to the home page
+  };
   const handleSignOut = () => {
     // Remove token and role from localStorage
     const token = localStorage.getItem("token");
@@ -34,7 +41,12 @@ const NavBar = () => {
           <Typography variant="h6" style={{ flexGrow: 1 }}>
             MQ Store
           </Typography>
-          <Button color="inherit" component={Link} to="/">
+          <Button
+            color="inherit"
+            component={Link}
+            to="/"
+            onClick={handleHomeClick}
+          >
             Home
           </Button>
           <Button color="inherit" component={Link} to="/About">
