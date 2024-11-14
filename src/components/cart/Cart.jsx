@@ -127,25 +127,25 @@ const Cart = () => {
               value={address}
               onChange={handleAddressChange}
               variant="outlined"
-              sx={{ marginBottom: 2 }}
+              sx={{ marginBottom: 2, backgroundColor: "white" }}
             />
             <Button
-              variant="contained"
-              color="primary"
+              variant="outlined"
+              color="black"
               onClick={handleAddressUpdate}
+              sx={{ marginBottom: 2, backgroundColor: "black" }}
             >
               Update Address
             </Button>
           </Box>
         ) : (
-          <Box sx={{ marginTop: 2 }}>
+          <Box sx={{ marginTop: 2, backgroundColor: "primry" }}>
             <Typography variant="body1">
               {address || "No address provided yet"}
             </Typography>
             <Button
-              variant="outlined"
-              color="primary"
-              sx={{ marginTop: 1 }}
+              variant="contained"
+              sx={{ marginTop: 1, backgroundColor: "black" }}
               onClick={() => setAddressEditing(true)}
             >
               Edit Address

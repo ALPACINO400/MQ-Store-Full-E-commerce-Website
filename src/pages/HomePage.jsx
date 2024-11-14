@@ -20,8 +20,6 @@ export default function HomePage() {
   return (
     <div>
       <div className="homepage-container">
-        <h1 className="homepage-title">List of products</h1>
-
         <div className="homepage-grid">
           <div className="search-input-container">
             <SearchInput />
@@ -31,6 +29,7 @@ export default function HomePage() {
             <SortProduct />
           </div>
         </div>
+        <h1 className="homepage-title">List of products</h1>
 
         <div className="products-container">
           <Products />
