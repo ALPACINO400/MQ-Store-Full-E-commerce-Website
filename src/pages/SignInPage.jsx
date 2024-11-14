@@ -16,8 +16,8 @@ import "react-toastify/dist/ReactToastify.css";
 
 const SignInPage = () => {
   const [formData, setFormData] = useState({
-    email: "ma@gmail.com",
-    password: "123moh",
+    email: "",
+    password: "",
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
 
