@@ -157,7 +157,7 @@ const NavBar = () => {
         variant="outlined"
         component={Link}
         to="/register"
-        sx={{ mx: 1, borderColor: "white", color: "white" }}
+        sx={{ mx: 1, borderColor: "black", color: "blue" }}
       >
         Register
       </Button>
@@ -166,7 +166,7 @@ const NavBar = () => {
         variant="contained"
         component={Link}
         to="/signin"
-        sx={{ mx: 1 }}
+        sx={{ mx: 1, backgroundColor: "black" }}
       >
         Sign In
       </Button>
@@ -174,7 +174,7 @@ const NavBar = () => {
         color="secondary"
         variant="contained"
         onClick={handleSignOut}
-        sx={{ mx: 1 }}
+        sx={{ mx: 1, backgroundColor: "black" }}
       >
         Sign Out
       </Button>
