@@ -96,7 +96,6 @@
 // };
 
 // export default NavBar;
-
 import React, { useContext, useState } from "react";
 import {
   AppBar,
@@ -109,6 +108,7 @@ import {
   List,
   ListItem,
   ListItemText,
+  Divider,
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import { Link, useNavigate } from "react-router-dom";
@@ -147,46 +147,39 @@ const NavBar = () => {
     { label: "Home", link: "/", onClick: handleHomeClick },
     { label: "About", link: "/About" },
     { label: "Contact", link: "/Contact" },
-    { label: <CartIcon />, link: "/Cart" },
-    {
-      label: (
-        <Button
-          color="inherit"
-          variant="outlined"
-          component={Link}
-          to="/register"
-          sx={{ mx: 1, borderColor: "white", color: "white" }}
-        >
-          Register
-        </Button>
-      ),
-    },
-    {
-      label: (
-        <Button
-          color="secondary"
-          variant="contained"
-          component={Link}
-          to="/signin"
-          sx={{ mx: 1, backgroundColor:"white"}}
-        >
-          Sign In
-        </Button>
-      ),
-    },
-    {
-      label: (
-        <Button
-          color="secondary"
-          variant="contained"
-          onClick={handleSignOut}
-          sx={{ mx: 1 }}
-        >
-          Sign Out
-        </Button>
-      ),
-    },
+    { label: <CartIcon />, link: "/cart" },
   ];
+
+  const authButtons = (
+    <>
+      <Button
+        color="inherit"
+        variant="outlined"
+        component={Link}
+        to="/register"
+        sx={{ mx: 1, borderColor: "white", color: "white" }}
+      >
+        Register
+      </Button>
+      <Button
+        color="secondary"
+        variant="contained"
+        component={Link}
+        to="/signin"
+        sx={{ mx: 1 }}
+      >
+        Sign In
+      </Button>
+      <Button
+        color="secondary"
+        variant="contained"
+        onClick={handleSignOut}
+        sx={{ mx: 1 }}
+      >
+        Sign Out
+      </Button>
+    </>
+  );
 
   return (
     <>
@@ -214,21 +207,18 @@ const NavBar = () => {
 
           {/* Buttons for Desktop */}
           <Box sx={{ display: { xs: "none", md: "flex" } }}>
-            {navItems.map((item, index) =>
-              typeof item.label === "string" ? (
-                <Button
-                  key={index}
-                  color="inherit"
-                  component={Link}
-                  to={item.link}
-                  onClick={item.onClick}
-                >
-                  {item.label}
-                </Button>
-              ) : (
-                item.label
-              )
-            )}
+            {navItems.map((item, index) => (
+              <Button
+                key={index}
+                color="inherit"
+                component={Link}
+                to={item.link}
+                onClick={item.onClick}
+              >
+                {typeof item.label === "string" ? item.label : item.label}
+              </Button>
+            ))}
+            {authButtons}
           </Box>
         </Toolbar>
       </AppBar>
@@ -239,24 +229,28 @@ const NavBar = () => {
         open={isDrawerOpen}
         onClose={() => setIsDrawerOpen(false)}
       >
-        <List>
-          {navItems.map((item, index) => (
-            <ListItem
-              button
-              key={index}
-              component={Link}
-              to={item.link}
-              onClick={() => {
-                setIsDrawerOpen(false); // Close the drawer after navigation
-                if (item.onClick) item.onClick();
-              }}
-            >
-              <ListItemText
-                primary={typeof item.label === "string" ? item.label : ""}
-              />
-            </ListItem>
-          ))}
-        </List>
+        <Box sx={{ width: 250 }}>
+          <List>
+            {navItems.map((item, index) => (
+              <ListItem
+                button
+                key={index}
+                component={Link}
+                to={item.link}
+                onClick={() => {
+                  setIsDrawerOpen(false); // Close the drawer after navigation
+                  if (item.onClick) item.onClick();
+                }}
+              >
+                <ListItemText
+                  primary={typeof item.label === "string" ? item.label : ""}
+                />
+              </ListItem>
+            ))}
+          </List>
+          <Divider />
+          <Box sx={{ textAlign: "center", p: 2 }}>{authButtons}</Box>
+        </Box>
       </Drawer>
 
       {/* Toast Notifications */}
