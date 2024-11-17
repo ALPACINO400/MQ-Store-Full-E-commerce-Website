@@ -147,7 +147,7 @@ const NavBar = () => {
     { label: "Home", link: "/", onClick: handleHomeClick },
     { label: "About", link: "/About" },
     { label: "Contact", link: "/Contact" },
-    { label: <CartIcon />, link: "/cart" },
+    { label: <CartIcon />, link: "/Cart" },
     {
       label: (
         <Button
@@ -168,7 +168,7 @@ const NavBar = () => {
           variant="contained"
           component={Link}
           to="/signin"
-          sx={{ mx: 1 }}
+          sx={{ mx: 1, backgroundColor:"white"}}
         >
           Sign In
         </Button>
