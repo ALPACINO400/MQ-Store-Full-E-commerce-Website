@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
 
-import { TextField, Button, Typography } from "@mui/material";
+import { TextField, Button, Typography, Box } from "@mui/material";
 import Products from "./products/Products";
 import { ProductContext } from "../Context/ProductContext";
 
@@ -36,7 +36,14 @@ const SearchInput = () => {
 
 
   return (
-    <div>
+    <Box
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        gap: 2,
+      }}
+    >
       {error && <Typography color="error">{error}</Typography>}
 
       <TextField
@@ -68,10 +75,18 @@ const SearchInput = () => {
         }}
       />
 
-      <Button variant="contained" color="primary" onClick={handleSearch}>
+      <Button
+        variant="contained"
+        color="primary"
+        onClick={handleSearch}
+        sx={{
+          width: "100%", // Make button fill the width of the container
+          maxWidth: "200px", // Limit maximum width on larger screens
+        }}
+      >
         Search
       </Button>
-    </div>
+    </Box>
   );
 };
 
