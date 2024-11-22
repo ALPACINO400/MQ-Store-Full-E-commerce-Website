@@ -56,6 +56,7 @@ const SearchInput = () => {
           onChange={handleSearchChange}
           margin="normal"
           sx={{
+            height: "50%", // Ensures the button height matches the text field height
             "& .MuiOutlinedInput-root": {
               "& fieldset": {
                 borderColor: "lightblue", // Border color for default state
@@ -82,7 +83,7 @@ const SearchInput = () => {
           onClick={handleSearch}
           sx={{
             ml: 1, // Adds margin to the left of the button for spacing
-            height: "100%", // Ensures the button height matches the text field height
+            height: "50%", // Ensures the button height matches the text field height
           }}
         >
           Search
