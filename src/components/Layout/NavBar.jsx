@@ -1,39 +1,158 @@
-import React, { useContext } from "react";
-import { AppBar, Toolbar, Typography, Button, Box } from "@mui/material";
+// import React, { useContext } from "react";
+// import { AppBar, Toolbar, Typography, Button, Box } from "@mui/material";
+// import { Link, useNavigate } from "react-router-dom";
+// import { toast, ToastContainer } from "react-toastify";
+// import "react-toastify/dist/ReactToastify.css";
+
+// import CartIcon from "../cart/CartIcon";
+// import { ProductContext } from "../../Context/ProductContext";
+
+// const NavBar = () => {
+//   const { setSearchValue } = useContext(ProductContext);
+//   const navigate = useNavigate();
+
+//   const handleHomeClick = () => {
+//     setSearchValue(""); // Reset the search value
+//     navigate("/"); // Navigate to the home page
+//   };
+//   const handleSignOut = () => {
+//     // Remove token and role from localStorage
+//     const token = localStorage.getItem("token");
+//     if (token) {
+//       // Remove token and role from localStorage
+//       localStorage.removeItem("token");
+//       localStorage.removeItem("role");
+
+//       toast.success("You have logged out successfully!");
+
+//       // Redirect to the login page
+//       setTimeout(() => {
+//         navigate("/signin");
+//       }, 2000);
+//     } else {
+//       // If there's no token, show the "already signed out" message
+//       toast.info("You are already signed out.");
+//     }
+//   };
+//   return (
+//     <>
+//       <AppBar position="sticky" sx={{ top: 0, backgroundColor: "black" }}>
+//         <Toolbar>
+//           <Typography variant="h6" style={{ flexGrow: 1 }}>
+//             MQ Store
+//           </Typography>
+//           <Button
+//             color="inherit"
+//             component={Link}
+//             to="/"
+//             onClick={handleHomeClick}
+//           >
+//             Home
+//           </Button>
+//           <Button color="inherit" component={Link} to="/About">
+//             About
+//           </Button>
+//           <Button color="inherit" component={Link} to="/Contact">
+//             Contact
+//           </Button>
+
+//           <Button color="inherit" component={Link} to="/cart">
+//             <CartIcon />
+//           </Button>
+
+//           <Box sx={{ ml: 2 }}>
+//             <Button
+//               color="inherit"
+//               variant="outlined"
+//               component={Link}
+//               to="/register"
+//               sx={{ mx: 1, borderColor: "white", color: "white" }}
+//             >
+//               Register
+//             </Button>
+//             <Button
+//               color="secondary"
+//               variant="contained"
+//               component={Link}
+//               to="/signin"
+//               sx={{ mx: 1 }}
+//             >
+//               Sign In
+//             </Button>
+//             <Button
+//               color="secondary"
+//               variant="contained"
+//               onClick={handleSignOut}
+//               sx={{ mx: 1 }}
+//             >
+//               Sign Out
+//             </Button>
+//           </Box>
+//         </Toolbar>
+//       </AppBar>
+//       <ToastContainer position="top-right" autoClose={2000} />{" "}
+//     </>
+//   );
+// };
+
+// export default NavBar;
+
+
+
+
+
+
+import React, { useContext, useState } from "react";
+import {
+  AppBar,
+  Toolbar,
+  Typography,
+  Button,
+  Box,
+  IconButton,
+  Drawer,
+  List,
+  ListItem,
+  ListItemText,
+} from "@mui/material";
 import { Link, useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
+import MenuIcon from "@mui/icons-material/Menu";
 import CartIcon from "../cart/CartIcon";
 import { ProductContext } from "../../Context/ProductContext";
 
 const NavBar = () => {
   const { setSearchValue } = useContext(ProductContext);
   const navigate = useNavigate();
+  const [drawerOpen, setDrawerOpen] = useState(false);
+
+  const handleDrawerToggle = () => {
+    setDrawerOpen(!drawerOpen);
+  };
 
   const handleHomeClick = () => {
     setSearchValue(""); // Reset the search value
     navigate("/"); // Navigate to the home page
+    setDrawerOpen(false); // Close the drawer
   };
+
   const handleSignOut = () => {
-    // Remove token and role from localStorage
     const token = localStorage.getItem("token");
     if (token) {
-      // Remove token and role from localStorage
       localStorage.removeItem("token");
       localStorage.removeItem("role");
-
       toast.success("You have logged out successfully!");
 
-      // Redirect to the login page
       setTimeout(() => {
         navigate("/signin");
       }, 2000);
     } else {
-      // If there's no token, show the "already signed out" message
       toast.info("You are already signed out.");
     }
+    setDrawerOpen(false); // Close the drawer
   };
+
   return (
     <>
       <AppBar position="sticky" sx={{ top: 0, backgroundColor: "black" }}>
@@ -41,32 +160,46 @@ const NavBar = () => {
           <Typography variant="h6" style={{ flexGrow: 1 }}>
             MQ Store
           </Typography>
-          <Button
+
+          <IconButton
+            edge="start"
             color="inherit"
-            component={Link}
-            to="/"
-            onClick={handleHomeClick}
+            aria-label="menu"
+            sx={{ display: { xs: "block", sm: "none" } }}
+            onClick={handleDrawerToggle}
           >
-            Home
-          </Button>
-          <Button color="inherit" component={Link} to="/About">
-            About
-          </Button>
-          <Button color="inherit" component={Link} to="/Contact">
-            Contact
-          </Button>
+            <MenuIcon />
+          </IconButton>
 
-          <Button color="inherit" component={Link} to="/cart">
-            <CartIcon />
-          </Button>
-
-          <Box sx={{ ml: 2 }}>
+          <Box sx={{ display: { xs: "none", sm: "flex" }, gap: 1 }}>
+            <Button
+              color="inherit"
+              component={Link}
+              to="/"
+              onClick={handleHomeClick}
+            >
+              Home
+            </Button>
+            <Button color="inherit" component={Link} to="/About">
+              About
+            </Button>
+            <Button color="inherit" component={Link} to="/Contact">
+              Contact
+            </Button>
+            <Button color="inherit" component={Link} to="/cart">
+              <CartIcon />
+            </Button>
             <Button
               color="inherit"
               variant="outlined"
               component={Link}
               to="/register"
-              sx={{ mx: 1, borderColor: "white", color: "white" }}
+              sx={{
+                borderColor: "white",
+                color: "white",
+                padding: "15px",
+                height: "50px",
+              }}
             >
               Register
             </Button>
@@ -75,7 +208,9 @@ const NavBar = () => {
               variant="contained"
               component={Link}
               to="/signin"
-              sx={{ mx: 1 }}
+              sx={{
+                height: "50px",
+              }}
             >
               Sign In
             </Button>
@@ -83,19 +218,94 @@ const NavBar = () => {
               color="secondary"
               variant="contained"
               onClick={handleSignOut}
-              sx={{ mx: 1 }}
+              sx={{
+                height: "50px",
+              }}
             >
               Sign Out
             </Button>
           </Box>
         </Toolbar>
       </AppBar>
-      <ToastContainer position="top-right" autoClose={2000} />{" "}
+
+      <Drawer anchor="right" open={drawerOpen} onClose={handleDrawerToggle}>
+        <List sx={{ width: 250 }}>
+          <ListItem
+            button
+            component={Link}
+            to="/"
+            onClick={() => {
+              handleHomeClick();
+              setDrawerOpen(false);
+            }}
+          >
+            <ListItemText primary="Home" />
+          </ListItem>
+          <ListItem
+            button
+            component={Link}
+            to="/cart"
+            onClick={handleDrawerToggle}
+          >
+            <ListItemText primary="Cart" />
+          </ListItem>
+          <ListItem
+            button
+            component={Link}
+            to="/About"
+            onClick={handleDrawerToggle}
+          >
+            <ListItemText primary="About" />
+          </ListItem>
+
+          <ListItem
+            button
+            component={Link}
+            to="/register"
+            onClick={handleDrawerToggle}
+          >
+            <ListItemText primary="Register" />
+          </ListItem>
+          <ListItem
+            button
+            component={Link}
+            to="/signin"
+            onClick={handleDrawerToggle}
+          >
+            <ListItemText primary="Sign In" />
+          </ListItem>
+          <ListItem
+            button
+            onClick={() => {
+              handleSignOut();
+              setDrawerOpen(false);
+            }}
+          >
+            <ListItemText primary="Sign Out" />
+          </ListItem>
+          <ListItem
+            button
+            component={Link}
+            to="/Contact"
+            onClick={handleDrawerToggle}
+          >
+            <ListItemText primary="Contact" />
+          </ListItem>
+        </List>
+      </Drawer>
+
+      <ToastContainer position="top-right" autoClose={2000} />
     </>
   );
 };
 
 export default NavBar;
+
+
+
+
+
+
 // import React, { useContext, useState } from "react";
 // import {
 //   AppBar,

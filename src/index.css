@@ -10,10 +10,6 @@ body {
   text-align: center;
 }
 
-footer *::after {
-  content: none !important;
-}
-
 .homepage-title {
   margin-bottom: 10px;
 }

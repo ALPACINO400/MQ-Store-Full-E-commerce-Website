@@ -70,7 +70,7 @@ const App = () => {
   return (
     <ProductProvider>
       <CartProvider>
-        <RouterProvider router={router} />;
+        <RouterProvider router={router} />
         <ToastContainer />
       </CartProvider>
     </ProductProvider>
