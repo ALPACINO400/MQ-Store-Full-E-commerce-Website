@@ -46,46 +46,48 @@ const SearchInput = () => {
     >
       {error && <Typography color="error">{error}</Typography>}
 
-      <TextField
-        label="Search Products"
-        variant="outlined"
-        fullWidth
-        value={searchInput}
-        onChange={handleSearchChange}
-        margin="normal"
-        sx={{
-          "& .MuiOutlinedInput-root": {
-            "& fieldset": {
-              borderColor: "lightblue", // Border color for default state
+      {/* Wrap the TextField and Button inside a Box to align them horizontally */}
+      <Box sx={{ display: "flex", width: "100%", maxWidth: 500 }}>
+        <TextField
+          label="Search Products"
+          variant="outlined"
+          fullWidth
+          value={searchInput}
+          onChange={handleSearchChange}
+          margin="normal"
+          sx={{
+            "& .MuiOutlinedInput-root": {
+              "& fieldset": {
+                borderColor: "lightblue", // Border color for default state
+              },
+              "&:hover fieldset": {
+                borderColor: "#F5EFFF", // Border color when hovered
+              },
+              "&.Mui-focused fieldset": {
+                borderColor: "#F5EFFF", // Border color when focused
+              },
+              color: "#F5EFFF", // Text color
             },
-            "&:hover fieldset": {
-              borderColor: "#F5EFFF", // Border color when hovered
+            "& .MuiInputLabel-root": {
+              color: "#F5EFFF", // Label color
             },
-            "&.Mui-focused fieldset": {
-              borderColor: "#F5EFFF", // Border color when focused
+            "& .MuiInputLabel-root.Mui-focused": {
+              color: "#F5EFFF", // Label color when focused
             },
-            color: "#F5EFFF", // Text color
-          },
-          "& .MuiInputLabel-root": {
-            color: "#F5EFFF", // Label color
-          },
-          "& .MuiInputLabel-root.Mui-focused": {
-            color: "#F5EFFF", // Label color when focused
-          },
-        }}
-      />
-
-      <Button
-        variant="contained"
-        color="primary"
-        onClick={handleSearch}
-        sx={{
-          width: "100%", // Make button fill the width of the container
-          maxWidth: "200px", // Limit maximum width on larger screens
-        }}
-      >
-        Search
-      </Button>
+          }}
+        />
+        <Button
+          variant="contained"
+          color="primary"
+          onClick={handleSearch}
+          sx={{
+            ml: 1, // Adds margin to the left of the button for spacing
+            height: "100%", // Ensures the button height matches the text field height
+          }}
+        >
+          Search
+        </Button>
+      </Box>
     </Box>
   );
 };
