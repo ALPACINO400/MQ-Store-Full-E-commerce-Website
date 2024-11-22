@@ -229,7 +229,7 @@ const NavBar = () => {
       </AppBar>
 
       <Drawer anchor="right" open={drawerOpen} onClose={handleDrawerToggle}>
-        <List sx={{ width: 250 }}>
+        <List sx={{ width: 150 }}>
           <ListItem
             button
             component={Link}
