@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
 
-import { TextField, Button, Typography, Box } from "@mui/material";
+import { TextField, Button, Typography } from "@mui/material";
 import Products from "./products/Products";
 import { ProductContext } from "../Context/ProductContext";
 
@@ -36,60 +36,42 @@ const SearchInput = () => {
 
 
   return (
-    <Box
-      sx={{
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        gap: 2,
-      }}
-    >
+    <div>
       {error && <Typography color="error">{error}</Typography>}
 
-      {/* Wrap the TextField and Button inside a Box to align them horizontally */}
-      <Box sx={{ display: "flex", width: "100%", maxWidth: 500 }}>
-        <TextField
-          label="Search Products"
-          variant="outlined"
-          fullWidth
-          value={searchInput}
-          onChange={handleSearchChange}
-          margin="normal"
-          sx={{
-            height: "50%", // Ensures the button height matches the text field height
-            "& .MuiOutlinedInput-root": {
-              "& fieldset": {
-                borderColor: "lightblue", // Border color for default state
-              },
-              "&:hover fieldset": {
-                borderColor: "#F5EFFF", // Border color when hovered
-              },
-              "&.Mui-focused fieldset": {
-                borderColor: "#F5EFFF", // Border color when focused
-              },
-              color: "#F5EFFF", // Text color
+      <TextField
+        label="Search Products"
+        variant="outlined"
+        fullWidth
+        value={searchInput}
+        onChange={handleSearchChange}
+        margin="normal"
+        sx={{
+          "& .MuiOutlinedInput-root": {
+            "& fieldset": {
+              borderColor: "lightblue", // Border color for default state
             },
-            "& .MuiInputLabel-root": {
-              color: "#F5EFFF", // Label color
+            "&:hover fieldset": {
+              borderColor: "#F5EFFF", // Border color when hovered
             },
-            "& .MuiInputLabel-root.Mui-focused": {
-              color: "#F5EFFF", // Label color when focused
+            "&.Mui-focused fieldset": {
+              borderColor: "#F5EFFF", // Border color when focused
             },
-          }}
-        />
-        <Button
-          variant="contained"
-          color="primary"
-          onClick={handleSearch}
-          sx={{
-            ml: 1, // Adds margin to the left of the button for spacing
-            height: "50%", // Ensures the button height matches the text field height
-          }}
-        >
-          Search
-        </Button>
-      </Box>
-    </Box>
+            color: "#F5EFFF", // Text color
+          },
+          "& .MuiInputLabel-root": {
+            color: "#F5EFFF", // Label color
+          },
+          "& .MuiInputLabel-root.Mui-focused": {
+            color: "#F5EFFF", // Label color when focused
+          },
+        }}
+      />
+
+      <Button variant="contained" color="primary" onClick={handleSearch}>
+        Search
+      </Button>
+    </div>
   );
 };
 
