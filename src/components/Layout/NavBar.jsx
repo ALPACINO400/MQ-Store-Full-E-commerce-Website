@@ -244,20 +244,27 @@ const NavBar = () => {
           <ListItem
             button
             component={Link}
-            to="/cart"
-            onClick={handleDrawerToggle}
-          >
-            <ListItemText primary="Cart" />
-          </ListItem>
-          <ListItem
-            button
-            component={Link}
             to="/About"
             onClick={handleDrawerToggle}
           >
             <ListItemText primary="About" />
           </ListItem>
-
+          <ListItem
+            button
+            component={Link}
+            to="/Contact"
+            onClick={handleDrawerToggle}
+          >
+            <ListItemText primary="Contact" />
+          </ListItem>
+          <ListItem
+            button
+            component={Link}
+            to="/cart"
+            onClick={handleDrawerToggle}
+          >
+            <ListItemText primary="Cart" />
+          </ListItem>
           <ListItem
             button
             component={Link}
@@ -282,14 +289,6 @@ const NavBar = () => {
             }}
           >
             <ListItemText primary="Sign Out" />
-          </ListItem>
-          <ListItem
-            button
-            component={Link}
-            to="/Contact"
-            onClick={handleDrawerToggle}
-          >
-            <ListItemText primary="Contact" />
           </ListItem>
         </List>
       </Drawer>
