@@ -2,13 +2,13 @@ body {
   background-color:#67777dd6;
   color: rgb(255, 255, 255);
 }
-.homepage-container {
+/* .homepage-container {
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
   padding: 10px;
   text-align: center;
-}
+} */
 
 .homepage-title {
   margin-bottom: 10px;
